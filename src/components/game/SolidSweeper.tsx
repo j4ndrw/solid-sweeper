@@ -7,9 +7,14 @@ const SolidSweeper: Component = () => {
 
     return (
         <div class="flex flex-col justify-center items-center -mt-48">
-            <h1 class="m-20">SolidSweeper</h1>
+            <h1 class="m-20">Solid-Sweeper</h1>
+
             {!difficulty() && (
                 <>
+                    <h2 class="text-xl m-20">
+                        A minesweeper clone! Well, not quite, lol, but getting
+                        there! :D
+                    </h2>
                     <h2 class="text-xl">Choose difficulty</h2>
                     <div class="flex justify-between items-center">
                         <button
