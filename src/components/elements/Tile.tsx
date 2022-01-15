@@ -22,7 +22,7 @@ const Tile: Component = () => {
                 clicked() ? "bg-gray-200" : "bg-gray-100"
             } hover:bg-gray-300 border-2 rounded-sm m-1`}
             onClick={() => {
-                if (!clicked()) setClicked(true);
+                if (!clicked() && !flagged()) setClicked(true);
             }}
             onContextMenu={(e) => {
                 e.preventDefault();
