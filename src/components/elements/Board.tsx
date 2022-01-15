@@ -10,11 +10,11 @@ const Board: Component<Props> = ({ difficulty }) => {
     const size = createMemo(() => {
         switch (difficulty) {
             case "easy":
-                return 10;
+                return 5;
             case "medium":
-                return 25;
+                return 10;
             case "hard":
-                return 50;
+                return 15;
         }
     });
     return (

@@ -8,17 +8,17 @@ const Tile: Component = () => {
     const bomb = createMemo(() => Math.random() >= 0.5);
 
     const Icon = createMemo(() => () => {
-        if (flagged()) return <Flag class="bg-yellow-500" />;
+        if (flagged()) return <Flag class="w-6 h-6 bg-yellow-500" />;
         if (clicked()) {
-            if (bomb()) return <X class="bg-red-600" />;
-            return <Check class="bg-green-600" />;
+            if (bomb()) return <X class="w-6 h-6 bg-red-600" />;
+            return <Check class="w-6 h-6 bg-green-600" />;
         }
         return <></>;
     });
 
     return (
         <div
-            class={`w-10 h-10 ${
+            class={`w-7 h-7 ${
                 clicked() ? "bg-gray-200" : "bg-gray-100"
             } hover:bg-gray-300 border-2 rounded-sm m-1`}
             onClick={() => {

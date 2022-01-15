@@ -6,7 +6,7 @@ const SolidSweeper: Component = () => {
     const [difficulty, setDifficulty] = createSignal<Difficulty | null>(null);
 
     return (
-        <div class="flex flex-col justify-center items-center -mt-96">
+        <div class="flex flex-col justify-center items-center -mt-48">
             <h1 class="m-20">SolidSweeper</h1>
             {!difficulty() && (
                 <>
