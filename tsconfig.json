@@ -14,7 +14,9 @@
             "@/*": ["./*"],
             "@components/*": ["components/*"],
             "@assets/*": ["assets/*"],
-            "@interfaces/*": ["interfaces/*"]
+            "@interfaces/*": ["interfaces/*"],
+            "@store/*": ["store/*"],
+            "@hooks/*": ["hooks/*"]
         },
         "typeRoots": ["@types", "./node_modules/@types"]
     }
