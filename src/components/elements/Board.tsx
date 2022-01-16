@@ -1,7 +1,7 @@
 import type { Difficulty } from "@/types/Difficulty";
-import { Component, createEffect, createMemo, For } from "solid-js";
+import { Component, createMemo, For } from "solid-js";
 import Tile from "./Tile";
-import { state, updateGameOver, updateScore } from "@store/store";
+import { state } from "@store/store";
 import createTiles from "@/hooks/createTiles";
 
 interface Props {

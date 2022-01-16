@@ -1,5 +1,4 @@
 import { ITile } from "@/interfaces/ITile";
-import { createMemo } from "solid-js";
 
 function createNeighbours(tiles: ITile[], size: number) {
     return tiles.map((tile, index) => {

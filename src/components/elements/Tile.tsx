@@ -1,6 +1,6 @@
 import { Component, createEffect, createMemo, createSignal } from "solid-js";
 
-import { FiX as X, FiCheck as Check, FiFlag as Flag } from "solid-icons/fi";
+import { FiX as X, FiFlag as Flag } from "solid-icons/fi";
 
 import { state, updateScore, updateTileRevealed } from "@store/store";
 import { ITile } from "@/interfaces/ITile";

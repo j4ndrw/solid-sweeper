@@ -1,6 +1,5 @@
 import { ITile } from "@interfaces/ITile";
 import { setState, state } from "@store/store";
-import { createMemo } from "solid-js";
 import createNeighbours from "./createNeighbours";
 
 const populateBombs = (tiles: ITile[], size: number): ITile[] => {
