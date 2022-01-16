@@ -1,11 +1,3 @@
-# Author insights
-
-Honestly, this isn't even close to minesweeper. I'm just rendering tiles and randomly deciding if they are bombs or not. I mostly created this super small project just to familiarize myself with SolidJS and see what it has to offer.
-
-After playing with it, I could see myself developing in SolidJS in the future and I would say I enjoy it more than React.
-
-Having an easy to setup project and not having to worry about the dependency graph (unlike React) is a selling point to me - this is great stuff! :)
-
 ## Usage
 
 Those templates dependencies are maintained via [pnpm](https://pnpm.io) via `pnpm up -Lri`.
