@@ -12,8 +12,7 @@ const SolidSweeper: Component = () => {
 
             <Show when={!difficulty()} fallback={<></>}>
                 <h2 class="text-xl m-20">
-                    A minesweeper clone! Well, not quite, lol, but getting
-                    there! :D
+                    A (close enough) minesweeper clone! :D
                 </h2>
                 <h2 class="text-xl">Choose difficulty</h2>
                 <div class="flex justify-between items-center">
