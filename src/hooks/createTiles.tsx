@@ -23,6 +23,7 @@ const populateBombs = (tiles: ITile[], size: number): ITile[] => {
 function createTiles(size: number) {
     const tiles: ITile[] = Array(size * size).fill({
         kind: "free",
+        revealed: false,
     } as ITile);
 
     const allNeighbours = createNeighbours(tiles, size);

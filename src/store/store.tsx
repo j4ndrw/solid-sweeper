@@ -16,31 +16,7 @@ export const [state, setState] = createStore<Store>({
 export function updateGameOver(newState: boolean) {
     setState({
         ...state,
-        gameOver: true,
-    });
-}
-
-export function updateNeighboursIfTileFree(
-    neighbourBombs: number,
-    currentTileIndex: number
-) {
-    setState({
-        ...state,
-        tiles: state.tiles.map((tile, index) => {
-            if (currentTileIndex === index) {
-                return {
-                    ...tile,
-                    neighbours:
-                        neighbourBombs === 0
-                            ? tile.neighbours.map((neighbour) => () => ({
-                                  ...neighbour(),
-                                  revealed: true,
-                              }))
-                            : tile.neighbours,
-                };
-            }
-            return tile;
-        }),
+        gameOver: false,
     });
 }
 

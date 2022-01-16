@@ -1,17 +1,44 @@
 import Board from "@components/elements/Board";
 import type { Difficulty } from "@/types/Difficulty";
-import { Component, createEffect, createSignal, Show } from "solid-js";
-import { state } from "@store/store";
+import {
+    Component,
+    createMemo,
+    createSignal,
+    Match,
+    Show,
+    Switch,
+} from "solid-js";
+import { state, updateGameOver } from "@store/store";
+import { FaSmile, FaSolidSadCry } from "solid-icons/fa";
 
 const SolidSweeper: Component = () => {
     const [difficulty, setDifficulty] = createSignal<Difficulty | null>(null);
 
+    const isEveryFreeTileRevealed = createMemo(
+        () =>
+            state.tiles.length > 0 &&
+            state.tiles
+                .filter((tile) => tile.kind === "free")
+                .every((tile) => tile.revealed)
+    );
+    const isBombRevealed = createMemo(
+        () =>
+            state.tiles.length > 0 &&
+            state.tiles
+                .filter((tile) => tile.kind === "bomb")
+                .some((tile) => tile.revealed)
+    );
+
+    if (isEveryFreeTileRevealed() || isBombRevealed()) {
+        updateGameOver(true);
+    }
+
     return (
         <div class="flex flex-col justify-center items-center -mt-48">
-            <h1 class="m-20">Solid-Sweeper - by j4ndrw</h1>
+            <h1 class="mt-32 mb-5">Solid-Sweeper by j4ndrw</h1>
 
             <Show when={!difficulty()} fallback={<></>}>
-                <h2 class="text-xl m-20">
+                <h2 class="text-xl m-10">
                     A (close enough) minesweeper clone! :D
                 </h2>
                 <h2 class="text-xl">Choose difficulty</h2>
@@ -38,41 +65,45 @@ const SolidSweeper: Component = () => {
             </Show>
             <Show when={difficulty()} fallback={<></>}>
                 <div class="flex justify-center items-center">
-                    <Show
-                        when={!state.gameOver}
+                    <Switch
                         fallback={
-                            <h1 class="text-2xl m-10">
-                                Oof... game over! tough luck!!! :(
-                            </h1>
+                            <div class="flex flex-col justify-center items-center">
+                                <div class="flex justify-center items-center">
+                                    <h2 class="text-2xl mr-5">Difficulty: </h2>
+                                    <h2
+                                        class={`text-2xl capitalize ${(() => {
+                                            switch (difficulty()) {
+                                                case "easy":
+                                                    return "text-green-600";
+                                                case "medium":
+                                                    return "text-yellow-600";
+                                                case "hard":
+                                                    return "text-red-600";
+                                            }
+                                        })()}`}
+                                    >
+                                        {difficulty()}
+                                    </h2>
+                                </div>
+                                <h2 class="text-xl">Score: {state.score}</h2>
+                            </div>
                         }
                     >
-                        <div class="flex flex-col justify-center items-center">
-                            <div class="flex justify-center items-center">
-                                <h2 class="text-2xl mr-5">Difficulty: </h2>
-                                <h2
-                                    class={`text-2xl capitalize ${(() => {
-                                        switch (difficulty()) {
-                                            case "easy":
-                                                return "text-green-600";
-                                            case "medium":
-                                                return "text-yellow-600";
-                                            case "hard":
-                                                return "text-red-600";
-                                        }
-                                    })()}`}
-                                >
-                                    {difficulty()}
-                                </h2>
-                            </div>
-                            <h2 class="text-xl">Score: {state.score}</h2>
-                        </div>
-                    </Show>
+                        <Match when={isEveryFreeTileRevealed()}>
+                            <h1 class="text-2xl m-10 flex justify-center items-center">
+                                Yay, you won! Congrats <FaSmile />
+                            </h1>
+                        </Match>
+                        <Match when={isBombRevealed()}>
+                            <h1 class="text-2xl m-10 flex justify-center items-center">
+                                Oof... game over! tough luck!!!{" "}
+                                <FaSolidSadCry />
+                            </h1>
+                        </Match>
+                    </Switch>
                 </div>
                 <Board difficulty={difficulty()!} />
             </Show>
-            <h2 class="absolute bottom-20 text-sm">
-                Refresh the page to play again
-            </h2>
         </div>
     );
 };

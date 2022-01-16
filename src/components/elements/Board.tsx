@@ -1,9 +1,7 @@
 import type { Difficulty } from "@/types/Difficulty";
 import { Component, createEffect, createMemo, For } from "solid-js";
 import Tile from "./Tile";
-import { state, setState } from "@store/store";
-import { ITile } from "@/interfaces/ITile";
-import createNeighbours from "@/hooks/createNeighbours";
+import { state, updateGameOver, updateScore } from "@store/store";
 import createTiles from "@/hooks/createTiles";
 
 interface Props {
@@ -23,9 +21,10 @@ const Board: Component<Props> = ({ difficulty }) => {
     });
 
     createTiles(size());
+    const tiles = createMemo(() => state.tiles);
 
     return (
-        <div>
+        <div class="flex flex-col justify-center items-center">
             <For each={Array(size())}>
                 {(_, row) => (
                     <div class="flex justify-center items-center">
@@ -34,14 +33,14 @@ const Board: Component<Props> = ({ difficulty }) => {
                                 <div class="flex flex-row justify-center items-center">
                                     <Tile
                                         bomb={
-                                            state.tiles[row() * size() + col()]
+                                            tiles()[row() * size() + col()]
                                                 .kind === "bomb"
                                         }
                                         neighbours={
-                                            state.tiles[row() * size() + col()]
+                                            tiles()[row() * size() + col()]
                                                 .neighbours
                                         }
-                                        index={row() * size() + col()}
+                                        which={row() * size() + col()}
                                     />
                                 </div>
                             )}
@@ -49,6 +48,14 @@ const Board: Component<Props> = ({ difficulty }) => {
                     </div>
                 )}
             </For>
+            <button
+                class="mt-5 flex justify-center items-center border-4 rounded-lg p-5 text-xl"
+                onClick={() => {
+                    window.location.reload();
+                }}
+            >
+                Play Again
+            </button>
         </div>
     );
 };
