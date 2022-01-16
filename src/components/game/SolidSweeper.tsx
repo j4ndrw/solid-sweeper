@@ -8,7 +8,7 @@ const SolidSweeper: Component = () => {
 
     return (
         <div class="flex flex-col justify-center items-center -mt-48">
-            <h1 class="m-20">Solid-Sweeper</h1>
+            <h1 class="m-20">Solid-Sweeper - by j4ndrw</h1>
 
             <Show when={!difficulty()} fallback={<></>}>
                 <h2 class="text-xl m-20">
