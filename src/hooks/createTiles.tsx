@@ -27,7 +27,7 @@ function createTiles(size: number) {
 
     const allNeighbours = createNeighbours(tiles, size);
 
-    const initializedTiles = populateBombs(tiles, size).map(
+    const initializedTiles = populateBombs(tiles, size * 2).map(
         (tile, index): ITile => {
             const neighbours = allNeighbours[index];
             return {
